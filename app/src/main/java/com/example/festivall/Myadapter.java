@@ -5,14 +5,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 public class Myadapter extends ArrayAdapter<dataclass> {
+
 
     Context context;
     List<dataclass> dataclassList;
@@ -22,6 +26,7 @@ public class Myadapter extends ArrayAdapter<dataclass> {
         super(context,R.layout.data_item,dataclasses);
         this.context=context;
         this.dataclassList=dataclasses;
+
 
     }
 
@@ -39,6 +44,8 @@ public class Myadapter extends ArrayAdapter<dataclass> {
         datedebut.setText(dataclassList.get(position).getDatedebut());
         Description.setText(dataclassList.get(position).getDescription());
         photo.setText(dataclassList.get(position).getPhoto());
+
+
         return view;
     }
 }

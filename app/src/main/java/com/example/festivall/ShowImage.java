@@ -1,11 +1,12 @@
 package com.example.festivall;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.widget.Adapter;
-import android.widget.ImageView;
-import android.widget.ListView;
+import android.view.Display;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -14,43 +15,48 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Showdata extends AppCompatActivity {
-    ListView listView;
-    Myadapter myadapter;
-    dataclass dataclass;
-    String Url="http://192.168.1.33/xampp/GestionFest/CRUD-METHODS/ReadEvent.php";
-    public static ArrayList<dataclass>dataclassArrayList=new ArrayList<>();
+
+public class ShowImage extends AppCompatActivity {
+    RecyclerView recyclerView;
+    String url="http://192.168.1.33/xampp/GestionFest/CRUD-METHODS/GetImage.php";
+    List<Model> imagelist;
+    Model model;
+    LinearLayoutManager linearLayoutManager;
+    Adapter adapter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_showdata);
-        listView=findViewById(R.id.listview);
-        myadapter=new Myadapter(this,dataclassArrayList);
-        listView.setAdapter(myadapter);
-        getData();
+        setContentView(R.layout.activity_show_image);
+        recyclerView = findViewById(R.id.rv);
+        linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        imagelist= new ArrayList<>();
+        adapter = new Adapter(this,imagelist);
+        recyclerView.setAdapter(adapter);
+
+        getimages();
+
+
 
 
     }
 
-    private void getData() {
-        StringRequest request = new StringRequest(Request.Method.GET, Url, new Response.Listener<String>() {
+    private void getimages() {
+
+        StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
-                dataclassArrayList.clear();
+                imagelist.clear();
                 try{
                     JSONObject jsonObjectb = new JSONObject(response);
                     String success=jsonObjectb.getString("success");
@@ -63,11 +69,13 @@ public class Showdata extends AppCompatActivity {
                             String lieu= object.getString("lieu");
                             String datedebut= object.getString("datedebut");
                             String Description= object.getString("Description");
-                            String photo= object.getString("photo");
+                            String url2= object.getString("photo");
+                            String urlimage="http://192.168.1.33/xampp/GestionFest/Images/"+url2;
 
-                            dataclass= new dataclass(nom,lieu,datedebut,Description,photo);
-                            dataclassArrayList.add(dataclass);
-                            myadapter.notifyDataSetChanged();
+
+                            model= new Model(nom,lieu,datedebut,Description,urlimage);
+                            imagelist.add(model);
+                            adapter.notifyDataSetChanged();
 
                         }
                     }
@@ -78,11 +86,11 @@ public class Showdata extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(Showdata.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ShowImage.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
         );
-        RequestQueue requestQueue = Volley.newRequestQueue(Showdata.this);
+        RequestQueue requestQueue = Volley.newRequestQueue(ShowImage.this);
         requestQueue.add(request);
     }
 }
