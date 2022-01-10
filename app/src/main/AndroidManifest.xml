@@ -11,7 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Festivall">
-        <activity android:name=".ShowImage"></activity>
+        <activity android:name=".DeleteE"></activity>
+        <activity android:name=".UpdateE" />
+        <activity android:name=".CRUD" />
+        <activity android:name=".AdminAuht" />
+        <activity android:name=".ShowImage" />
         <activity android:name=".Showdata" />
         <activity android:name=".MainActivity">
             <intent-filter>

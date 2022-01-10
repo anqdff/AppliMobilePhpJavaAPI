@@ -1,5 +1,7 @@
 package com.example.festivall;
 
+import android.media.audiofx.AudioEffect;
+
 public class dataclass {
     String id;
     String nom;
@@ -17,9 +19,11 @@ public class dataclass {
         this.photo= photo;
     }
 
+
     public String getId() {
         return id;
     }
+
 
     public void setId(String id) {
         this.id = id;

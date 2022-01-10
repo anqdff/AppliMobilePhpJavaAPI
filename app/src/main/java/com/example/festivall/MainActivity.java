@@ -15,7 +15,7 @@ import org.w3c.dom.Text;
 public class MainActivity extends AppCompatActivity {
 
     TextView textView;
-
+    TextView AuthAdmin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +23,15 @@ public class MainActivity extends AppCompatActivity {
 
         TextView showdata = findViewById(R.id.showdata);
         textView=findViewById(R.id.tv_showimage);
+        AuthAdmin = findViewById(R.id.admin);
+        AuthAdmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,AdminAuht.class);
+                startActivity(intent);
+
+            }
+        });
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
