@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     TextView textView;
     TextView AuthAdmin;
+    TextView Showartiste;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
         TextView showdata = findViewById(R.id.showdata);
         textView=findViewById(R.id.tv_showimage);
+        Showartiste=findViewById(R.id.arti);
         AuthAdmin = findViewById(R.id.admin);
         AuthAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -30,6 +32,13 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this,AdminAuht.class);
                 startActivity(intent);
 
+            }
+        });
+        Showartiste.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,ShowArtiste.class);
+                startActivity(intent);
             }
         });
         textView.setOnClickListener(new View.OnClickListener() {
