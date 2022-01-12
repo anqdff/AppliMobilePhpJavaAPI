@@ -17,15 +17,24 @@ public class MainActivity extends AppCompatActivity {
     TextView textView;
     TextView AuthAdmin;
     TextView Showartiste;
+    TextView ModifierArtiste;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         TextView showdata = findViewById(R.id.showdata);
+        ModifierArtiste=findViewById(R.id.TextviewModifierArtiste);
         textView=findViewById(R.id.tv_showimage);
         Showartiste=findViewById(R.id.arti);
         AuthAdmin = findViewById(R.id.admin);
+        ModifierArtiste.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(MainActivity.this,AdminAuthArtiste.class);
+                startActivity(intent);
+            }
+        });
         AuthAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
