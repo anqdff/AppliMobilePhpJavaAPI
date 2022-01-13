@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Festivall">
-        <activity android:name=".AdminAuthArtiste"></activity>
+        <activity android:name=".DeleteArtiste"></activity>
+        <activity android:name=".AdminAuthArtiste" />
         <activity android:name=".UpdateArtiste" />
         <activity android:name=".AddArtiste" />
         <activity android:name=".ShowArtiste" />

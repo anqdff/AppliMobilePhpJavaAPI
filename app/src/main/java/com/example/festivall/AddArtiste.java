@@ -40,6 +40,14 @@ public class AddArtiste extends AppCompatActivity {
         photo=findViewById(R.id.editTextTextPersonName9);
         button=findViewById(R.id.buttonAddArti);
         update=findViewById(R.id.ModifierArtis);
+        delete=findViewById(R.id.DeleteArti);
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intenttt = new Intent(AddArtiste.this,DeleteArtiste.class);
+                startActivity(intenttt);
+            }
+        });
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
